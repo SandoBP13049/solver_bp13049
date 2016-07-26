@@ -1,0 +1,7 @@
+solver のコマンドライン部分と実行部分を分離
+solver-exesute.rbが実行部分
+solver-command.rbがコマンドライン引数を利用する部分
+
+$KCODE をコメントアウト
+
+実行するときにオプションとして -Eutf-8 が必要
