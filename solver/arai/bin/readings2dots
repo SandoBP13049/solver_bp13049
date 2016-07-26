@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+source $0:h/config
+set command=${libpathbase}/command/readings2dots.rb
+
+${rubycmd} -Ku -I${libpath} ${command} $*
+

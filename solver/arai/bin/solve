@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+source $0:h/config
+set command=${libpathbase}/command/solve.rb
+
+${rubycmd} -Ku -I${libpath} ${command} $*
+

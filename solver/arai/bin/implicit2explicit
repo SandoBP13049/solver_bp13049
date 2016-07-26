@@ -1,0 +1,5 @@
+#!/bin/tcsh -f
+source $0:h/config
+set command=${libpathbase}/command/implicit2explicit.rb
+
+${rubycmd} -Ku -I${libpath} ${command} $*

@@ -1,0 +1,46 @@
+各コマンドはbinディレクトリのシェルスクリプトから実行される。
+(bin/hogeコマンドは、src/command/hoge.rbを実行する。)
+
+各コマンドは --help で簡単な使い方を表示する。
+
+* 制約充足問題の記述の変換
+  % text2csp -t text -o csp
+  制約問題の記述 text を 制約充足問題 csp　に変換する。
+
+* 制約充足問題の視覚化
+  % csp2dot -c csp -o dot
+  制約充足問題 csp をGraphvizのDOT言語で記述する。
+   例 DOT言語の記述は dot コマンドで画像ファイルに変換できる。
+   % dot -Tpng dot -o png
+
+* 辞書の生成
+  % makedic -o dictionary seed1 seed2 ... seedn
+  辞書の元ファイル seed1 seed2 ... seedn から辞書 dictionary を作成する。
+
+* 読みの割り当て結果を求める。
+  % solve -d dictionary -c csp -b ucb -s ceh -o result
+  辞書 dictionary を参照して、制約充足問題 csp を解く。
+  解の比較には unsatisfied-count-better (ucb)を用いる。
+  locally-predicate-btterを用いるには、ucbではなくlpbを指定する。
+  探索の戦略にはcount-every-hierarchy (ceh)を用いる。
+  ceh以外に bcr (betterCRComposer), cac (count-all-constraint)がある。
+  結果をresultに出力する。
+
+* 読みの割り当て結果の視覚化
+  % reading2dot -c csp -r reading -o dot
+  制約充足問題 csp の読みの割り当て reading をDOT言語で記述する。
+   例 DOT言語の記述は dot コマンドで画像ファイルに変換できる。
+   % dot -Tpng dot -o png
+
+実行例
+
+% ./bin/csp2dot -c csp/ise2/ise2_1.csp -o /tmp/ise2_1.dot
+% dot -Tpng /tmp/ise2_1.dot -o /tmp/ise2_1.png
+
+% ./bin/solve -d dic/ise2.db -c csp/ise2/ise2_1.csp -b lpb -s ceh -o /tmp/result
+
+resultから切り出した読みの割り当て結果を /tmp/reading1.txt とすると、
+以下のようにして、その割り当て結果を視覚化できる。
+% ./bin/reading2dot -c csp/ise2/ise2_1.csp -r /tmp/reading1.txt -o /tmp/reading1.dot
+% dot -Tpng /tmp/reading1.dot -o /tmp/reading1.png
+

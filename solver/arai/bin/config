@@ -1,0 +1,4 @@
+set rubycmd=ruby
+set libpathbase=$0:h/../src
+set libpath=${libpathbase}
+

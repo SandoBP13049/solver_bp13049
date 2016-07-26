@@ -1,0 +1,49 @@
+#!/opt/local/bin/ruby
+# -*- coding: utf-8 -*-
+#
+# 出力ファイルから時間を抜き出す
+require 'optparse'
+require 'rs'
+$KCODE="u"
+
+opts={}
+opt = OptionParser.new
+opt.on('-c csp', '--csp csp') {|v| opts[:csp] = v}
+opt.on('-i directory', '--input directory') {|v| opts[:input] = v}
+opt.on('-o directory', '--out directory') {|v| opts[:out] = v}
+opt.parse!(ARGV)
+
+if !opts[:csp]
+  puts "-c is mandatory"
+  exit 1
+end
+if !opts[:input]
+  puts "-i is mandatory"
+  exit 1
+end
+
+fname = ["1_assign","2_marge","3_remove!","4_horizon","5_vertical"]
+TXT = ".txt"
+DOT = ".dot"
+index = 0
+
+f = open(opts[:csp])
+cspHash = eval f.read
+f.close
+csp = RS::CSP::ConstraintSatisfactionProblem.new(cspHash)
+
+fname.each{|name|
+  f = open(opts[:input] + name + TXT)
+  readings = eval f.read
+  f.close
+  
+  dot = RS::CSP::ReadingToDOT.new.translate(csp, readings)
+  
+  if opts[:out] 
+    open(opts[:out] + name + DOT, "w"){|f|
+      f.puts dot
+    }
+  else
+    puts dot
+  end
+}

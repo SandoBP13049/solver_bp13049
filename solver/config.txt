@@ -1,0 +1,16 @@
+dic/unidic.csv
+dic/matrix.bin
+dic/unidic_da_saved.txt
+dic/unidic_da_rev_saved.txt
+
+絶対パス、またはカレントディレクトリからの相対パス
+1行目:辞書
+2行目:連接コスト行列
+3行目:保存されたDoubleArray
+4行目:保存された逆引き用DoubleArray
+
+
+../ise2_dic_sorted.txt
+../unidic100.txt
+../ise2.csv
+../dic/unidic.csv
