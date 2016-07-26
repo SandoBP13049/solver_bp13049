@@ -5,3 +5,9 @@ solver-command.rbがコマンドライン引数を利用する部分
 $KCODE をコメントアウト
 
 実行するときにオプションとして -Eutf-8 が必要
+
+
+solver/bin に lex.csv matrix.binを追加 solver/dic に unidic.db を追加
+しなければ実行できない
+
+容量の都合でgitにpushできず
